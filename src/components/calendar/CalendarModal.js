@@ -19,7 +19,9 @@ const customStyles = {
     },
 };
 
-Modal.setAppElement('#root');
+if(process.env.NODE_ENV !== 'test') {
+    Modal.setAppElement('#root');
+}
 
 const initEvent = {
     title: '',
@@ -114,6 +116,7 @@ export const CalendarModal = () => {
             closeTimeoutMS={200}
             className="modal"
             overlayClassName="modal-fondo"
+            ariaHideApp={!process.env.NODE_ENV == 'test'}
         >
         <h1>{current ? 'Updating' : 'New'} Event</h1>
         <hr />
