@@ -14,63 +14,60 @@ import { types } from "../types/types";
 // },
 
 const initialState = {
-    events: [],
-    current: null,
-}
+  events: [],
+  current: null,
+};
 
-export const calendarReducer = ((state = initialState, action) => {
-    switch(action.type){
-        case types.eventSetCurrent:
-            return {
-                ...state,
-                current: action.payload
+export const calendarReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.eventSetCurrent:
+      return {
+        ...state,
+        current: action.payload,
+      };
+    case types.eventCleanCurrent:
+      return {
+        ...state,
+        current: initialState.current,
+      };
+    case types.eventAddNew:
+      return {
+        ...state,
+        events: [...state.events, action.payload],
+      };
+    case types.eventUpdateCurrent:
+      return {
+        ...state,
+        events: [
+          ...state.events.map((event) => {
+            if (event.id === action.payload.id) {
+              return action.payload;
             }
-        case types.eventCleanCurrent:
-            return {
-                ...state,
-                current: initialState.current
-            }
-        case types.eventAddNew:
-            return {
-                ...state,
-                events: [
-                    ...state.events,
-                    action.payload
-                ]
-            }
-        case types.eventUpdateCurrent:
-            return {
-                ...state,
-                events: [
-                    ...state.events.map(event => {
-                        if(event.id === action.payload.id){
-                            return action.payload
-                        }
 
-                        return event;
-                    })
-                ]
-            }
-        case types.eventDelete:
-            return {
-                ...state,
-                events: [
-                    ...state.events.filter((event) => {
-                        return (event.id !== state.current.id)
-                    })
-                ],
-                current: null
-            }
-        case types.eventLoaded:
-            return {
-                ...state,
-                events: [...action.payload],
-            }
-        case types.eventLogout:
-            return {
-                ...initialState
-            }
-        default:
-            return state;
-    }
-})
+            return event;
+          }),
+        ],
+      };
+    case types.eventDelete:
+      return {
+        ...state,
+        events: [
+          ...state.events.filter((event) => {
+            return event.id !== state.current.id;
+          }),
+        ],
+        current: null,
+      };
+    case types.eventLoaded:
+      return {
+        ...state,
+        events: [...action.payload],
+      };
+    case types.eventLogout:
+      return {
+        ...initialState,
+      };
+    default:
+      return state;
+  }
+};

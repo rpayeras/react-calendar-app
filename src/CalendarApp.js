@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const CalendarApp = () => {
-  return (
-    <div>CalendarApp</div>
-  )
-}
+  return <div>CalendarApp</div>;
+};

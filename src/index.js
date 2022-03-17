@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppRouter } from './routers/AppRouter';
+import React from "react";
+import ReactDOM from "react-dom";
+import { AppRouter } from "./routers/AppRouter";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from 'react-redux'
-import { store } from './store/store'
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
-import './index.css'
+import "./index.css";
 // import './modal.css'
 
 ReactDOM.render(
@@ -14,5 +14,5 @@ ReactDOM.render(
       <AppRouter />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

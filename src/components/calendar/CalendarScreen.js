@@ -1,68 +1,72 @@
-import React, { useEffect, useState } from 'react'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
-import moment from 'moment'
-import 'moment/locale/es';
+import React, { useEffect, useState } from "react";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import moment from "moment";
+import "moment/locale/es";
 
-import { Calendar, momentLocalizer } from 'react-big-calendar'
-import {messages} from '../../helpers/calendar-messages'
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import { messages } from "../../helpers/calendar-messages";
 
-import { CalendarEvent } from './CalendarEvent'
-import { CalendarModal } from './CalendarModal'
-import { Navbar } from '../ui/Navbar'
+import { CalendarEvent } from "./CalendarEvent";
+import { CalendarModal } from "./CalendarModal";
+import { Navbar } from "../ui/Navbar";
 
-import { useDispatch } from 'react-redux'
-import { uiOpenModal } from '../../actions/ui'
-import { useSelector } from 'react-redux';
-import { eventCleanCurrent, eventSetCurrent, eventStartLoading } from '../../actions/calendar';
-import { AddNewFab } from '../ui/AddNewFab';
-import { DeleteEventFab } from '../ui/DeleteEventFab';
+import { useDispatch } from "react-redux";
+import { uiOpenModal } from "../../actions/ui";
+import { useSelector } from "react-redux";
+import {
+  eventCleanCurrent,
+  eventSetCurrent,
+  eventStartLoading,
+} from "../../actions/calendar";
+import { AddNewFab } from "../ui/AddNewFab";
+import { DeleteEventFab } from "../ui/DeleteEventFab";
 
-moment.locale('es')
-const localizer = momentLocalizer(moment)
+moment.locale("es");
+const localizer = momentLocalizer(moment);
 
 export const CalendarScreen = () => {
-
-  const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month')
+  const [lastView, setLastView] = useState(
+    localStorage.getItem("lastView") || "month"
+  );
   const dispatch = useDispatch();
-  const {events, current} = useSelector(state => state.calendar)
-  const {uid} = useSelector(state => state.auth)
+  const { events, current } = useSelector((state) => state.calendar);
+  const { uid } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(eventStartLoading())
-  }, [dispatch])
-  
-  
+    dispatch(eventStartLoading());
+  }, [dispatch]);
+
   const onDoubleClick = (e) => {
-    dispatch(uiOpenModal())
-  }
+    dispatch(uiOpenModal());
+  };
 
   const onViewChange = (e) => {
-    localStorage.setItem('lastView', e)
-    setLastView(e)
-  }
+    localStorage.setItem("lastView", e);
+    setLastView(e);
+  };
 
   const onSelectEvent = (e) => {
-    dispatch(eventSetCurrent(e))
-  }
+    dispatch(eventSetCurrent(e));
+  };
 
   const onSelectedSlot = (e) => {
-    dispatch(eventCleanCurrent())
-    dispatch(uiOpenModal())
-  }
+    dispatch(eventCleanCurrent());
+    dispatch(uiOpenModal());
+  };
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
-      backgroundColor: uid === event.user._id ? '#367CF7' : '#464646',
-      borderRadius: '0px',
+      backgroundColor: uid === event.user._id ? "#367CF7" : "#464646",
+      borderRadius: "0px",
       opacity: 0.8,
-      display: 'block',
-      color: 'white'
-    }
+      display: "block",
+      color: "white",
+    };
 
     return {
-      style
-    }
-  }
+      style,
+    };
+  };
 
   return (
     <section className="calendar-screen">
@@ -81,16 +85,14 @@ export const CalendarScreen = () => {
         onSelectedSlot={onSelectedSlot}
         selectable={true}
         components={{
-          event: CalendarEvent
+          event: CalendarEvent,
         }}
         view={lastView}
       />
       <AddNewFab />
-      {
-        current && <DeleteEventFab />
-      }
+      {current && <DeleteEventFab />}
 
       <CalendarModal />
     </section>
-  )
-}
+  );
+};

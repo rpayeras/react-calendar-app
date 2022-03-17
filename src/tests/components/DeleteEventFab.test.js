@@ -1,45 +1,44 @@
-import React from 'react'
-import { mount } from "enzyme"
-import { Provider } from "react-redux"
+import React from "react";
+import { mount } from "enzyme";
+import { Provider } from "react-redux";
 
-import configureStore from "redux-mock-store"
-import thunk from "redux-thunk"
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
 
-import { DeleteEventFab } from '../../components/ui/DeleteEventFab'
-import { eventStartDelete } from '../../actions/calendar'
+import { DeleteEventFab } from "../../components/ui/DeleteEventFab";
+import { eventStartDelete } from "../../actions/calendar";
 
-const middlewares = [thunk]
-const mockStore = configureStore(middlewares)
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 
-const initState = {}
+const initState = {};
 
 let store = mockStore(initState);
-store.dispatch = jest.fn()
+store.dispatch = jest.fn();
 
-jest.mock('../../actions/calendar', () => ({
-    eventStartDelete: jest.fn()
+jest.mock("../../actions/calendar", () => ({
+  eventStartDelete: jest.fn(),
 }));
 
 const wrapper = mount(
-    <Provider store={store}>
-        <DeleteEventFab />
-    </Provider>
-)
+  <Provider store={store}>
+    <DeleteEventFab />
+  </Provider>
+);
 
-describe('Testing DeleteEventFab component', () => { 
+describe("Testing DeleteEventFab component", () => {
+  beforeEach(() => {
+    store = mockStore(initState);
+    jest.clearAllMocks();
+  });
 
-    beforeEach(() => {
-        store = mockStore(initState)
-        jest.clearAllMocks()
-    })
+  test("should render", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
 
-    test('should render', () => { 
-        expect(wrapper).toMatchSnapshot()
-     })
+  test("should dispatch eventStartDelete", () => {
+    wrapper.find("button").prop("onClick")();
 
-     test('should dispatch eventStartDelete', () => {
-         wrapper.find('button').prop('onClick')()
-
-         expect(eventStartDelete).toHaveBeenCalled()
-     })
- })
+    expect(eventStartDelete).toHaveBeenCalled();
+  });
+});

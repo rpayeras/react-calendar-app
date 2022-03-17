@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-  .input-primary{
-    @apply 
-      rounded-lg 
+@layer components {
+  .input-primary {
+    @apply rounded-lg 
       px-2 
       py-1 
       mb-2 
@@ -13,13 +12,12 @@
       shadow-md 
       placeholder:text-slate-400 
       focus:outline-sky-500
-      transition-all
-    ;
+      transition-all;
   }
 
-  .btn-primary, .swal2-confirm.swal2-styled{
-    @apply 
-      cursor-pointer 
+  .btn-primary,
+  .swal2-confirm.swal2-styled {
+    @apply cursor-pointer 
       font-semibold 
       bg-sky-500 
       shadow-md 
@@ -33,13 +31,11 @@
       transition-colors 
       duration-300
       focus:border-sky-700
-      focus:shadow-none
-    ;
+      focus:shadow-none;
   }
 
-  .btn-secondary{
-    @apply 
-      cursor-pointer 
+  .btn-secondary {
+    @apply cursor-pointer 
       font-semibold 
       bg-white 
       shadow-md 
@@ -48,36 +44,32 @@
       text-sky-500 
       hover:bg-neutral-200
       transition-colors 
-      duration-300
-    ;
+      duration-300;
   }
 
-  .is-invalid{
-    @apply
-      text-red-600
+  .is-invalid {
+    @apply text-red-600
       border
-      border-red-600
+      border-red-600;
   }
 
-  .modal-background{
-    @apply
-    absolute
+  .modal-background {
+    @apply absolute
     top-0
     w-full
-    h-full
+    h-full;
   }
 
-  .react-datetime-picker__inputGroup__input, 
+  .react-datetime-picker__inputGroup__input,
   .react-datetime-picker__inputGroup__divider,
-  .react-datetime-picker__inputGroup__leadingZero{
+  .react-datetime-picker__inputGroup__leadingZero {
     @apply text-
     font-weight: normal;
   }
 }
 
-.swal2-popup .swal2-actions .swal2-confirm.swal2-styled{
+.swal2-popup .swal2-actions .swal2-confirm.swal2-styled {
 }
-
 
 .ReactModalPortal > div {
   opacity: 0;
@@ -86,30 +78,27 @@
 .ReactModalPortal .ReactModal__Overlay {
   transition: opacity 100ms ease-in-out;
   background: rgba(0, 0, 0, 0.15);
-
-
 }
 
 .ReactModalPortal .ReactModal__Overlay--after-open {
   opacity: 1;
 }
 .ReactModalPortal .ReactModal__Overlay--before-close {
-    opacity: 0;
+  opacity: 0;
 }
 
-.calendar-screen{
-  display:flex;
+.calendar-screen {
+  display: flex;
   flex-flow: column;
   height: 100vh;
 }
 
-.react-datetime-picker input:focus{
+.react-datetime-picker input:focus {
   outline: none;
 }
 
-.react-datetime-picker__wrapper{
+.react-datetime-picker__wrapper {
   border: 0px solid gray !important;
-
 }
 
 .fab {

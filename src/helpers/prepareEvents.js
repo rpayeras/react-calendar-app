@@ -1,9 +1,9 @@
-import moment from "moment"
+import moment from "moment";
 
-export const prepareEvents = (events = []) => { 
-    return events.map( (e) => ({
-        ...e,
-        endDate: moment(e.endDate).toDate(),
-        startDate: moment(e.startDate).toDate()
-    }))
-}
+export const prepareEvents = (events = []) => {
+  return events.map((e) => ({
+    ...e,
+    endDate: moment(e.endDate).toDate(),
+    startDate: moment(e.startDate).toDate(),
+  }));
+};
