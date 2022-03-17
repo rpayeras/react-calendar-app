@@ -31,7 +31,14 @@ export const startRegister = (name, email, password) => {
     return async (dispatch) => {
         try{
             const res = await fetchNoToken('auth/new', {name, email, password}, 'POST')
-            const {ok, data, msg} = await res.json()
+            const {ok, data, msg, errors} = await res.json()
+            let errMsg = '';
+            
+            if(errors){
+                errors.forEach(({msg}, idx) => {
+                    errMsg += `\n${idx}: ${msg} \n`
+                })
+            }
 
             if(ok){
                 const {name, uid, token} = data;
@@ -44,7 +51,7 @@ export const startRegister = (name, email, password) => {
                     name
                 }))
             } else {
-                Swal.fire('Error',msg, 'error')
+                Swal.fire('Error', errMsg, 'error')
             }
         } catch(err){
             Swal.fire('Error', err, 'error')

@@ -1,3 +1,4 @@
+import { TrashIcon } from '@heroicons/react/solid'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { eventStartDelete } from '../../actions/calendar'
@@ -10,9 +11,8 @@ export const DeleteEventFab = () => {
   }
 
   return (
-    <button className="btn btn-danger fab-danger" onClick={handleDelete}>
-        <i className="fas fa-trash"></i>
-        <span>Delete</span>
+    <button className="absolute left-2 bottom-2 w-12 h-12 p-2 bg-red-500 text-white rounded-full shadow-lg hover:bg-white hover:text-red-500 transition-colors" onClick={handleDelete}>
+      <TrashIcon />
     </button>
   )
 }

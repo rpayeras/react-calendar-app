@@ -7,17 +7,19 @@ import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
 import { eventCleanCurrent, eventStartAddNew, eventStartUpdateCurrent } from '../../actions/calendar';
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
+import { SaveIcon } from '@heroicons/react/solid';
+  
+    const modalStyles = {
+        content: {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+    };
 
 if(process.env.NODE_ENV !== 'test') {
     Modal.setAppElement('#root');
@@ -112,68 +114,63 @@ export const CalendarModal = () => {
             isOpen={modalOpen}
             // onAfterOpen={afterOpenModal}
             onRequestClose={handleClose}
-            style={customStyles}
+            style={modalStyles}
             closeTimeoutMS={200}
-            className="modal"
-            overlayClassName="modal-fondo"
-            ariaHideApp={!process.env.NODE_ENV == 'test'}
+            className="modal w-11/12 md:w-4/12 p-4 bg-white rounded-md shadow-md z-10 min-w-1/2"
+            overlayClassName="modal-background"
+            ariaHideApp={!process.env.NODE_ENV === 'test'}
         >
-        <h1>{current ? 'Updating' : 'New'} Event</h1>
+        <h1 className="text-xl font-bold">{current ? 'Updating' : 'New'} Event</h1>
         <hr />
-        <form className="container" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
-            <div className="form-group">
-                <label>Date and hour of start</label><br />
+            <div className="font-semibold my-2">
+                <label className="">Date and hour of start</label><br />
                 <DateTimePicker 
                     onChange={handleStartDate} 
                     value={startDate} 
                     minDate={startDate}
-                    />
+                />
             </div>
-
-            <div className="form-group">
-                <label>Date and hour of finish</label><br />
+            <div className="font-semibold my-2">
+                <label className="">Date and hour of finish</label><br />
                 <DateTimePicker 
                     onChange={handleEndDate} 
                     value={endDate} 
                     minDate={startDate}
-                    />
+                />
             </div>
-
             <hr />
-            <div className="form-group">
-                <label>Title and notes</label>
+
+            <div className="my-2">
+                <label className="font-semibold">Title and notes</label><br />
                 <input 
                     type="text" 
-                    className={`form-control ${!titleValid ? 'is-invalid' : ''}`}
+                    className={`input-primary ${!titleValid ? 'is-invalid' : ''}`}
                     placeholder="Title of event"
                     name="title"
                     autoComplete="off"
                     value={title}
                     onChange={setFormValue}
-                />
-                <small id="emailHelp" className="form-text text-muted">Short description</small>
+                /><br />
             </div>
 
-            <div className="form-group">
-                <textarea 
-                    type="text" 
-                    className="form-control"
-                    placeholder="Notes"
-                    rows="5"
-                    name="notes"
-                    value={notes}
-                    onChange={setFormValue}
-                ></textarea>
-                <small id="emailHelp" className="form-text text-muted">Aditional info</small>
-            </div>
+            <textarea 
+                type="text" 
+                className="input-primary"
+                placeholder="Notes"
+                rows="5"
+                name="notes"
+                value={notes}
+                onChange={setFormValue}
+            ></textarea>
 
             <button
                 type="submit"
-                className="btn btn-outline-primary btn-block"
+                className="btn-primary w-full flex justify-center items-center gap-2"
             >
-                <i className="far fa-save"></i>
-                <span>Save</span>
+                <SaveIcon className="w-4 h-4"/>
+                <span className="font-bold">Save</span>
             </button>
         </form>
     </Modal>

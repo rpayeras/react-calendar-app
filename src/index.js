@@ -5,8 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 
-import './styles.css'
-import './modal.css'
+import './index.css'
+// import './modal.css'
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,5 +1,4 @@
 import React from 'react';
-import './login.css';
 
 import {useForm} from '../../hooks/useForm'
 import { useDispatch } from 'react-redux';
@@ -8,8 +7,8 @@ import Swal from 'sweetalert2';
 
 export const LoginScreen = () => {
     const [formLoginValues, setLoginFormValue] = useForm({
-        lEmail: "",
-        lPassword: ""
+        lEmail: "email12@test.com",
+        lPassword: "123456"
     })
 
     const dispatch = useDispatch()
@@ -41,96 +40,78 @@ export const LoginScreen = () => {
         dispatch(startRegister(rName, rEmail, rPassword))
     }
 
-    
     return (
-        <div className="container login-container">
-            <div className="row">
-                <div className="col-md-6 login-form-1">
-                    <h3>Sign In</h3>
-                    <form onSubmit={handleLogin}>
-                        <div className="form-group">
-                            <input 
-                                type="text"
-                                className="form-control"
-                                placeholder="Email"
-                                name="lEmail"
-                                value={lEmail}
-                                onChange={setLoginFormValue}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Password"
-                                name="lPassword"
-                                value={lPassword}
-                                onChange={setLoginFormValue}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input 
-                                type="submit"
-                                className="btnSubmit"
-                                value="Login" 
-                            />
-                        </div>
-                    </form>
-                </div>
+        <div className="flex flex-col md:flex-row gap-4 h-screen my-8 items-center justify-center">
+            <div className="max-w-md h-80 flex-1 bg-white-100 mx-4 p-6 rounded-md shadow-lg">
+                <h3 className='text-lg font-semibold mb-4 text-sky-500'>Sign In</h3>
+                <form onSubmit={handleLogin}>
+                    <input 
+                        type="text"
+                        className="input-primary"
+                        placeholder="Email"
+                        name="lEmail"
+                        value={lEmail}
+                        onChange={setLoginFormValue}
+                    />
+                    <input
+                        type="password"
+                        className="input-primary"
+                        placeholder="Password"
+                        name="lPassword"
+                        value={lPassword}
+                        onChange={setLoginFormValue}
+                    /> 
+                    <input 
+                        type="submit"
+                        className="btn-primary"
+                        value="Login" 
+                    />
+                </form>
+            </div>
 
-                <div className="col-md-6 login-form-2">
-                    <h3>Sign up</h3>
-                    <form onSubmit={handleRegister}>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Name"
-                                name="rName"
-                                value={rName}
-                                onChange={setRegisterFormValue}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="email"
-                                className="form-control"
-                                placeholder="Email"
-                                name="rEmail"
-                                value={rEmail}
-                                onChange={setRegisterFormValue}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Password" 
-                                name="rPassword"
-                                value={rPassword}
-                                onChange={setRegisterFormValue}
-                            />
-                        </div>
+            <div className="max-w-md h-80 flex-1 mx-4 p-6 rounded-md bg-sky-500 shadow-lg">
+                <h3 className="text-lg font-semibold mb-4 text-slate-50">Sign up</h3>
+                <form onSubmit={handleRegister}>
+                    <input
+                        type="text"
+                        className="input-primary"
+                        placeholder="Name"
+                        name="rName"
+                        value={rName}
+                        onChange={setRegisterFormValue}
+                    />
+                    <input
+                        type="email"
+                        className="input-primary"
+                        placeholder="Email"
+                        name="rEmail"
+                        value={rEmail}
+                        onChange={setRegisterFormValue}
+                    />
+                    <input
+                        type="password"
+                        className="input-primary"
+                        placeholder="Password" 
+                        name="rPassword"
+                        value={rPassword}
+                        onChange={setRegisterFormValue}
+                    />
 
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                className="form-control"
-                                placeholder="Repeat password" 
-                                name="rPassword2"
-                                value={rPassword2}
-                                onChange={setRegisterFormValue}
-                            />
-                        </div>
+                    <input
+                        type="password"
+                        className="input-primary"
+                        placeholder="Repeat password" 
+                        name="rPassword2"
+                        value={rPassword2}
+                        onChange={setRegisterFormValue}
+                    />
 
-                        <div className="form-group">
-                            <input 
-                                type="submit" 
-                                className="btnSubmit" 
-                                value="Create account" />
-                        </div>
-                    </form>
-                </div>
+                    <input 
+                        type="submit" 
+                        className="btn-secondary" 
+                        value="Create account" 
+                    />
+                </form>
             </div>
         </div>
     )
