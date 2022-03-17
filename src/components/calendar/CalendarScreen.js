@@ -10,9 +10,8 @@ import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
 import { Navbar } from "../ui/Navbar";
 
-import { useDispatch } from "react-redux";
 import { uiOpenModal } from "../../actions/ui";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   eventCleanCurrent,
   eventSetCurrent,

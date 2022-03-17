@@ -99,7 +99,7 @@ export const CalendarModal = () => {
       setTitleValid(true);
     }
 
-    //If id not exists we gonna create a new event
+    // If id not exists we gonna create a new event
     if (!id) {
       dispatch(eventStartAddNew(formValues));
     } else {

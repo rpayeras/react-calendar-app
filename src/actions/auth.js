@@ -37,7 +37,7 @@ export const startRegister = (name, email, password) => {
         { name, email, password },
         "POST"
       );
-      const { ok, data, msg, errors } = await res.json();
+      const { ok, data, errors } = await res.json();
       let errMsg = "";
 
       if (errors) {
@@ -87,7 +87,7 @@ export const startChecking = () => {
         );
       } else {
         console.log(msg);
-        //Swal.fire('Error', msg, 'error')
+        // Swal.fire('Error', msg, 'error')
       }
 
       dispatch(checkingFinish());

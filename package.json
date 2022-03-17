@@ -29,14 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --verbose=false",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "prettier"
-    ]
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -65,7 +59,13 @@
     "autoprefixer": "^10.4.4",
     "enzyme": "^3.11.0",
     "enzyme-to-json": "^3.6.2",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-react": "^7.29.4",
     "postcss": "^8.4.12",
     "postcss-import": "^14.0.2",
     "prettier": "^2.6.0",

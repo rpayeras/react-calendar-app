@@ -10,7 +10,7 @@ export const eventStartLoading = () => {
       const { ok, data } = await res.json();
 
       if (ok) {
-        let events = prepareEvents(data);
+        const events = prepareEvents(data);
         dispatch(eventLoaded(events));
       }
     } catch (err) {
